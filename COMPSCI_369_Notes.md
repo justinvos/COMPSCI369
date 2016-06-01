@@ -17,7 +17,6 @@ The **bisection method** is a slow-but-sure algorithm for finding a root of an e
 
 #### Bisection algorithm
 **Assuming:** *a and b are positions such that \(sign(f(a))\neq sign(f(b))\).*  
-**Initialisation:**  
 **Iterate until** \(f(a)-f(b)\approx 0\):  
 \(m=(a+b)/2\)  
 \(\text{if}\ sign(f(m))=sign(f(a))\ \text{then:}\)  
@@ -28,24 +27,10 @@ The **bisection method** is a slow-but-sure algorithm for finding a root of an e
 The **Newton-Raphson method** is a faster algorithm for finding a root of an equation. It involves iteratively approximating the root using: \(x_{i+1}=x_i - \frac{f(x_i)}{f'(x_i)}\).
 #### Newton-Raphson algorithm
 **Assuming:** *x is a position and f is continuous and differentiable.*  
-**Initialisation:**  
 **Iterate until** \(x_{i}-x_{i-1}\approx 0\):  
 \(x_{i+1}\leftarrow x_i-\frac{\Large f(x_i)}{f'(x_i)}\)  
 
-## Linear algebra
-
-The **identity matrix** is a square matrix with only 1's along the diagonal, denoted \(I_n\) where \(n\) is the size of the matrix.
-
-The **determinant** of a matrix \(A\) is defined as \(det(A)=det(\begin{bmatrix}a&b\\ c&d\end{bmatrix})=ad-bc\).
-
-A matrix is **invertible** (has an inverse) when \(det(A)\neq 0\).  
-A matrix is **singular** (has no inverses) when \(det(A)=0\).
-
-The **inverse** of a matrix is defined \(A^{-1}=\frac{\Large 1}{\Large det(A)}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}\).
-
-An **eigenvector** is a non-zero vector such that \(Ae=\lambda e\) for some scalar \(\lambda\).  
-The **eigenvalue** is the scalar \(\lambda\) corresponding to \(e\).  
-The eigenvalues of \(A\) can be found using \(det(A-\lambda I)=0\).
+## Vectors
 
 The **magnitude** of a vector \(v\) is \(|v|=\sqrt{v_1^2+...+v_n^2}\).  
 A vector is **normalised** when \(|v|=1\).
@@ -56,11 +41,35 @@ Two vectors \(u\) and \(v\) are **orthogonal** if \(u\cdot v=0\).
 A set of vectors is **mutually orthogonal** when each vector is orthogonal to every other vector.  
 A set of vectors is **orthonormal** when each vector is mutually orthogonal and each vector is normalised.
 
+## Matrices
+
+The **identity matrix** is a square matrix with only 1's along the diagonal, denoted \(I_n\) where \(n\) is the size of the matrix.
+
+The **determinant** of a matrix \(A\) is defined as \(det(A)=det(\begin{bmatrix}a&b\\ c&d\end{bmatrix})=ad-bc\).
+
+A matrix is **invertible** (has an inverse) when \(det(A)\neq 0\).  
+A matrix is **singular** (has no inverses) when \(det(A)=0\).
+
+The **inverse** of a matrix is defined \(A^{-1}=\frac{\Large 1}{\Large det(A)}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}\).
+
+\(A\times A^{-1}=I\).
+
+An **eigenvector** is a non-zero vector such that \(Ae=\lambda e\) for some scalar \(\lambda\).  
+The **eigenvalue** is the scalar \(\lambda\) corresponding to \(e\).  
+The eigenvalues of \(A\) can be found using \(det(A-\lambda I)=0\).
+
 ## Solving linear equations
 
 A **linear systems of equations** \(Ax=b\) where \(A\) is the coefficient matrix, \(x\) is the solution vector and \(b\) is the constants matrix.  
 This can be solved by finding \(A^{-1}\) and applying it to get \(x=A^{-1}b\).
 
+A **diagonal matrix** is a matrix where \(A_{ij}=0\) when \(i\neq j\).  
+The inverse of a diagonal matrix is \(A^{-1}_{ij}=1/A_{ij}\) when \(i=j\).
+
+A **triangular matrix** is a matrix is where \(A_{ij}=0\) when \(i>j\) in upper triangular matrices or when \(i<j\) in lower triangular matrices.
+
+
+**Gaussian elimination** is a process that involves transforming \(Ax=b\) into the equivalent equation \(Cx=d\) where C is triangular.
 
 If \(A\) is orthonormal, then \(A^T=A^{-1}\).
 
