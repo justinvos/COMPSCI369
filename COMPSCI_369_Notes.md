@@ -65,6 +65,16 @@ This can be solved by finding \(A^{-1}\) and applying it to get \(x=A^{-1}b\).
 If \(A\) is orthonormal, then \(A^T=A^{-1}\).
 
 
+## Factorising matrices
+
+**LU decomposition** is factorising \(A\) into the form \(A=LU\) where \(L\) is a lower triangular matrix and \(U\) is an upper triangular matrix.
+
+**Singular Value Decomposition** is factorising \(A\) into the form \(A=UDV^T\) where \(U\) and \(V\) are orthogonal matrices and \(D\) is a diagonal matrix containing \(\sqrt{\lambda_i}\).
+
+The **covariance matrix** of the matrix \(A\) is \(\Sigma=\frac{1}{n-1}AA^T\).
+
+**QR decomposition** is factorising \(A\) into the form \(A=QR\) where \(Q\) is an orthogonal matrix and \(R\) is an upper triangular matrix.
+
 ## Genetics
 
 **Deoxyribonucleic acid (DNA)** is one of the symbol sets containing genetic information. \(\text{DNA}=\{A,C,G,T\}\).
@@ -79,7 +89,21 @@ The **pyramidines** are \(C\), \(T\) and \(U\).
 **Translation** is the process of converting DNA into mRNA.  
 **Transcription** is the process of converting mRNA into proteins.
 
+A **codon** is a sequence of DNA of length 3.
+
+**Recombination** is the process of mixing the paternal and maternal copies of the genetic information.
+
+**Point mutations** are mutations to a single point in the genetic code.  
+A **single nucleotide polymorphism** is where a single base is swapped in the child's genetic code.  
+**Insertions** are when a sequence is added to an offspring's genetic code.  
+**Deletions** are when a sequence is removed from its genetic code.  
+**Gene duplication** is when a child inherits an extra copy of a whole gene.  
+**Inversions** are when a sequence is reversed in the copying.
+**Translocations** are when a sequence is copied out of order.
+
 ## Probability
+
+A **stochastic process** is one where the results are non-deterministic, but still influenced by factors.
 
 The **axioms of probability** are:
 1. \(P(\Omega)=1\).
@@ -93,11 +117,62 @@ Two events are **independent** iff \(P(A\cap B)=P(A)\times P(B)\).
 
 **Bayes' Theorem** states that: \(P(B|A)=\large\frac{P(A|B)\ P(B)}{P(A)}\).
 
+### Random variables
+
 A **random variable** is a variable whose value results from a random process.
+
+The **expected value** of a random variable \(X\) is the mean \(\mu\), defined \(E[X]=\underset{x\in X}\sum{x\times P(x)}\).
+
+The **variance** of a random variable is \(Var(X)=E[(X-E[X])^2]=E[X^2]-(E[X])^2\)
 
 A **probability density function** returns the probability of a possible value.
 
-**Marginalisation** is the process of finding \(P(x)\) by summing all the possible values of \(y\) for \(P(x,y)\) i.e. \(\underset{y\in Y}{\sum} P(x,y)\).
+**Marginalisation** is the process of finding \(P(x)\) by summing all the possible values of \(P(x,y)\) for \(y\) i.e. \(\underset{y\in Y}{\sum} P(x,y)\).
+
+**Entropy** measures the unpredictability of a random variable. The entropy can be calculated using \(H(X)=-\underset{x\in X}\sum{P(x)log(P(x))}\).
+
+### Probability distributions
+
+A **Bernoulli distribution** can have the values 0 (failure) and 1 (success). It takes the probability of success \(p\) as a parameter. \(q\) is the probability of failure and is calculated \(q=1-p\).  
+\(E[X]=p\)  
+\(Var(X)=pq\)
+
+A **Geometric distribution** is the number of Bernoulli trials that before the first success (can be inclusive or exclusive of the success trial). It only takes the probability of success \(p\).  
+\({PDF}_{Geom}(x, p)=(1-p)^xp\)  
+\(E[X]=\frac{q}{p}\)  
+\(Var(X)=\frac{q}{p^2}\)
+
+A **Binomial distribution** is the number of successes in \(n\) Bernoulli trials. Therefore it takes both the probability of success \(p\) and the number of trials \(n\).  
+\({PDF}_{Bin}(x,n,p)=\frac{n!}{x!(n-x)!}p^x(1-p)^{n-p}\)  
+\(E[X]=np\)  
+\(Var(X)=npq\)
+
+A **Poisson distribution** is used to model the number of rare events that occur in a period of time. It takes the event rate \(\lambda\).  
+\({PDF}_{Poiss}(x,\lambda)=e^{-\lambda}{\large\frac{\lambda^x}{x!}}\)  
+\(E[X]=\lambda\)  
+\(Var(X)=\lambda\)
+
+A **Uniform distribution** represents a model where all values are equally likely. It only takes the number of possibilities \(n\).  
+\({PDF}_{U}(n)=1/n\)
+
+A **Normal distribution** or a **Gaussian distribution** is Normally distributed along a bell curve with mean \(\mu\) and variance \(\sigma^2\).  
+\({PDF}_(x,\mu,\sigma)=\frac{1}{\sigma \sqrt{2\pi}}exp\{-\frac{1}{2\sigma^2}(x-\mu)^2\}\)
+
+
+An **Exponential distribution** models the time between rare events and therefore only accepts non-negative values. It takes the event rate \(\lambda\).  
+\({PDF}_{Exp}(x, \lambda)=\lambda e^{-\lambda x}\)  
+\(E[X]=\frac{1}{\lambda}\)  
+\(Var(X)=\frac{1}{\lambda^2}\)
+
+## Inference
+
+The **likelihood** of observing a set of data \(D\) is \(P(D|\theta)\) where \(\theta\) is the set of parameters for our model. This can be calculated as \(P(D|theta)=\underset{i}\prod{P(D_i|\theta)}\).
+
+The **prior distribution** is the distribution before making any observations, denoted \(P(\theta)\).
+
+The **posterior distribution** is the distribution estimated from the observed data, denoted \(P(\theta|D)\). It can be calculated using \(P(\theta|D)=\frac{P(D|\theta)P(\theta)}{P(D)}\) where \(P(D)\) is the normalisation constant.
+
+The **normalisation constant** is denoted \(P(D)\).
 
 ## Alignment
 Two sequence regions are **homologous** that share a common ancestry. The level of similarity depends on how recently they shared a common ancestor.
@@ -116,7 +191,7 @@ The **Needleman-Wunsch algorithm** can be used to find a global alignment.
 **Local alignment** refers to the optimal alignment of some subsequences within each sequence.  
 The **Smith-Waterman algorithm** can be used to find a local alignment.
 
-## Multiple sequence alignment
+### Multiple sequence alignment
 
 **Multiple sequence alignment (MSA)** is the alignment of more than two sequences.
 
