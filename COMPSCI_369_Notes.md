@@ -1,3 +1,5 @@
+# COMPSCI 369 Notes
+
 ## Mathematical problems
 
 A problem is **well-posed** if:
@@ -43,25 +45,28 @@ A set of vectors is **orthonormal** when each vector is mutually orthogonal and 
 
 ## Matrices
 
-The **identity matrix** is a square matrix with only 1's along the diagonal, denoted \(I_n\) where \(n\) is the size of the matrix.
+The **identity matrix** is a square matrix with only 1's along the diagonal, denoted \(\mathbf I_n\) where \(n\) is the size of the matrix.
 
-The **determinant** of a matrix \(A\) is defined as \(det(A)=det(\begin{bmatrix}a&b\\ c&d\end{bmatrix})=ad-bc\).
+The **determinant** of a matrix \(A\) is defined as \(det(A)=det(\begin{bmatrix}a&b\\ c&d\end{bmatrix})=ad-bc\), also denoted \(|A|\).
 
 A matrix is **invertible** (has an inverse) when \(det(A)\neq 0\).  
 A matrix is **singular** (has no inverses) when \(det(A)=0\).
 
 The **inverse** of a matrix is defined \(A^{-1}=\frac{\Large 1}{\Large det(A)}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}\).
 
-\(A\times A^{-1}=I\).
+\(A\times A^{-1}=\mathbf I\).
 
 An **eigenvector** is a non-zero vector such that \(Ae=\lambda e\) for some scalar \(\lambda\).  
 The **eigenvalue** is the scalar \(\lambda\) corresponding to \(e\).  
-The eigenvalues of \(A\) can be found using \(det(A-\lambda I)=0\).
+The eigenvalues of \(A\) can be found using \(det(A-\lambda \mathbf I)=0\).
 
 ## Solving linear equations
 
 A **linear systems of equations** \(Ax=b\) where \(A\) is the coefficient matrix, \(x\) is the solution vector and \(b\) is the constants matrix.  
 This can be solved by finding \(A^{-1}\) and applying it to get \(x=A^{-1}b\).
+
+A system is **under-determined** if there are less equations (\(m\) rows in \(A\)) than unknowns (\(n\) columns in \(A\)) i.e. \(m<n\).  
+A system is **over-determined** if there are more equations (\(m\) rows in \(A\)) than unknowns (\(n\) columns in \(A\)) i.e. \(m>n\).
 
 A **diagonal matrix** is a matrix where \(A_{ij}=0\) when \(i\neq j\).  
 The inverse of a diagonal matrix is \(A^{-1}_{ij}=1/A_{ij}\) when \(i=j\).
@@ -78,11 +83,28 @@ If \(A\) is orthonormal, then \(A^T=A^{-1}\).
 
 **LU decomposition** is factorising \(A\) into the form \(A=LU\) where \(L\) is a lower triangular matrix and \(U\) is an upper triangular matrix.
 
-**Singular Value Decomposition** is factorising \(A\) into the form \(A=UDV^T\) where \(U\) and \(V\) are orthogonal matrices and \(D\) is a diagonal matrix containing \(\sqrt{\lambda_i}\).
+**Singular Value Decomposition** is factorising \(A\) into the form \(A=UDV^T\) where \(U\) and \(V\) are orthogonal matrices containing the column eigenvectors of \(A^TA\) and \(AA^T\) respectively and \(D\) is a diagonal matrix containing the singular values of both \(A^TA\) and \(AA^T\).
 
-The **covariance matrix** of the matrix \(A\) is \(\Sigma=\frac{1}{n-1}AA^T\).
+**Singular values** are defined as \(\sigma=\sqrt{\lambda}\).
 
-**QR decomposition** is factorising \(A\) into the form \(A=QR\) where \(Q\) is an orthogonal matrix and \(R\) is an upper triangular matrix.
+The **condition number of a matrix** is defined \(cond(A)=\Large\frac{\sigma_{max}}{\sigma_{min}}\).
+
+The **covariance matrix** of the matrix \(A\) is defined \(\Sigma=\frac{1}{n-1}AA^T\).
+
+## Least sqaures
+
+In linear regression, finding a \(u\) that satisfies \(Au=b\) is usually impossible, so we attempt to find the best solution \(u^*\).
+
+The **error** or **residual** is defined as \(e=b-Au\).  
+The **total square error** is the sum of squared errors \(E(u)=\sum{e_{i}^2}=\sum{e_{i}\cdot e_{i}}=e^T\cdot e\).  
+\(\therefore E(u)=(b-Au)^T(b-Au)\)  
+The best solution \(u^*\) minimises \(E(u)\), to find this we can differentiate and solve for \(0\).  
+This results in the **normal equation** which is \(A^TAu=A^Tb\).
+
+**QR decomposition** is factorising \(A\) into the form \(A=QR\) where \(Q\) is an orthogonal matrix produced by the Gram-Schmidt process and \(R\) is an upper triangular matrix \(R=Q^TA\).
+
+The **Gram-Schmidt** process involves finding the orthonormal columns \(q_{1},\cdots,q_{n}\) of \(Q\) from the columns \(a_{1},\ldots,a_{n}\) of \(A\).  
+\(q_{j}=\Large\frac{v_{j}}{|v_{j}|}\) where \(v_{j}=a_{j}-\sum_{i=1}^{j-1}{(a_{j}^Tq_{i})q_i}\).
 
 ## Genetics
 
@@ -183,6 +205,12 @@ The **posterior distribution** is the distribution estimated from the observed d
 
 The **normalisation constant** is denoted \(P(D)\).
 
+## Markov chains
+The **Markov property** refers to the property where the next state in a random walk depends only on the current state.
+\(P(X_{n+1}|X_{n}=x_{n}, \ldots,X_{1}=x_{1})=P(X_{n+1}|X_{n}=x_{n})\)
+
+A **realisation** is a possible random walk of the Markov chain.
+
 ## Alignment
 Two sequence regions are **homologous** that share a common ancestry. The level of similarity depends on how recently they shared a common ancestor.
 
@@ -190,6 +218,10 @@ Two sequence regions are **homologous** that share a common ancestry. The level 
 **Paralogy** occurs when a region of the genome is duplicated in the same genome (a duplication event) and they evolve in parallel in the same genome. The two copies are said to be paralogs.
 
 **Pairwise alignment** is the problem of optimally aligning two sequences.
+
+The probability of getting sequence \(x\) is \(P(x)=\prod_{i=1}^n\large q_{x_i}\) where \(q_{a}\) is the probability of getting state \(a\) and \(n\) is the length of the sequence.
+
+The **joint likelihood** of an alignment is \(P(x,y)=\prod_{i=1}^n\large q_{x_i}q_{y_i}\).
 
 A **linear gap penalty** is defined as \(\gamma(k)=-dk\) where \(d>0\) and \(k\) is the gap length.  
 An **affine gap penalty** is defined as \(\gamma(k)=-d-(k-1)e\) where \(d>e>0\) and \(k\) is the gap length. \(d\) is the gap open penalty and \(e\) is the gap extension penalty.
